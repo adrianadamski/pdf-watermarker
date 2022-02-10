@@ -347,7 +347,7 @@ class fpdi_pdf_parser extends pdf_parser {
     	$obj = $this->pdf_resolve_object($this->c, $obj);
     	if (isset ($obj[1][1]['/Rotate'])) {
     		$res = $this->pdf_resolve_object($this->c, $obj[1][1]['/Rotate']);
-    		if ($res[0] == PDF_TYPE_OBJECT)
+    		if ($res && $res[0] == PDF_TYPE_OBJECT)
                 return $res[1];
             return $res;
     	} else {
@@ -355,7 +355,7 @@ class fpdi_pdf_parser extends pdf_parser {
     			return false;
     		} else {
                 $res = $this->_getPageRotation($obj[1][1]['/Parent']);
-                if ($res[0] == PDF_TYPE_OBJECT)
+                if ($res && $res[0] == PDF_TYPE_OBJECT)
                     return $res[1];
                 return $res;
     		}
